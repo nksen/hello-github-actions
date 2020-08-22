@@ -14,8 +14,8 @@ jobs:
   build:
     needs: prep
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        hotelInfo: ${{fromJSON(needs.prep.outputs.HOTELS)}}
+    #strategy:
+    #  matrix:
+    #    hotelInfo: ${{fromJSON(needs.prep.outputs.HOTELS)}}
     steps:
-      - run: echo ${{ matrix.hotelInfo }}
+      - run: echo ${{ needs.prep.outputs.HOTELS }}
