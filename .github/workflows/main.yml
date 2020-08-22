@@ -9,7 +9,8 @@ jobs:
     name: Hello world action
     runs-on: ubuntu-latest
     steps:
-      - run: curl -s -XGET 'http://3a3776fcc9d7.ngrok.io/admin/hotels' > /tmp/hotels.json && echo "::set-output name=HOTELS::$(printf '%s' "$(cat /tmp/hotels.json" | python -c 'import json,sys; print(json.dumps(sys.stdin.read()))')";
+      - run: curl -s -XGET 'http://3a3776fcc9d7.ngrok.io/admin/hotels' > /tmp/hotels.json && echo "::set-output name=HOTELS::$(cat /tmp/hotels.json)";
+      - run: sed -i 's/"/\\"/g' /tmp/hotels.json
       - run: cat /tmp/hotels.json
   build:
     needs: prep
