@@ -1,5 +1,7 @@
+# @format
+
 name: A workflow for my Hello World file
-on: 
+on:
   repository_dispatch:
     types: launch
 jobs:
@@ -7,6 +9,7 @@ jobs:
     name: Hello world action
     runs-on: ubuntu-latest
     steps:
+      - run: HOTELS=$(curl -XGET 'http://localhost:5000/admin/hotels') echo “::set-env name=HOTELS::$HOTELS"
       - uses: actions/checkout@v1
       - run: env
       - run: echo ${{ github.event.client_payload.myName }}
