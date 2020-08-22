@@ -11,12 +11,12 @@ jobs:
     steps:
       - run: HOTELS=$(curl -XGET 'http://3a3776fcc9d7.ngrok.io/admin/hotels') && echo "::set-output name=HOTELS::$HOTELS"
       - run: env
-      - run: echo "$HOTELS"
+      - run: echo ${{ prep.outputs.HOTELS }}
   build:
     needs: prep
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        hotelInfo: ${{fromJSON(needs.prep.outputs.hotels)}}
+        hotelInfo: ${{fromJSON(needs.prep.outputs.HOTELS)}}
     steps:
       - run: echo ${{ matrix.hotelInfo }}
