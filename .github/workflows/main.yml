@@ -9,9 +9,8 @@ jobs:
     name: Hello world action
     runs-on: ubuntu-latest
     steps:
-      - run: HOTELS=$(curl -XGET 'http://3a3776fcc9d7.ngrok.io/admin/hotels') && echo "::set-output name=HOTELS::$HOTELS"
+      - run: HOTELS=$(curl -XGET 'http://3a3776fcc9d7.ngrok.io/admin/hotels') && echo "::set-output name=HOTELS::$HOTELS" && echo $HOTELS
       - run: env
-      - run: echo ${{ job.outputs.HOTELS }}
   build:
     needs: prep
     runs-on: ubuntu-latest
