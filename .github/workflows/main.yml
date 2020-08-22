@@ -19,10 +19,10 @@ jobs:
     needs: prep
     runs-on: ubuntu-latest
     env:
-      TESTING: ${{ needs.prep.outputs.action_fruit }}
+      TESTING: ${{ jobs.prep.outputs.action_fruit }}
     #strategy:
     #  matrix:
     #    hotelInfo: ${{fromJSON(needs.prep.outputs.HOTELS)}}
     steps:
       - run: echo "$TESTING"
-      - run: env
+      - run: echo ${{toJSON(jobs.preps)}}
