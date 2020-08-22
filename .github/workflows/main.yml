@@ -19,7 +19,7 @@ jobs:
     needs: prep
     runs-on: ubuntu-latest
     env:
-      - TESTING: ${{ needs.prep.outputs.action_fruit }}
+      TESTING: ${{ needs.prep.outputs.action_fruit }}
     #strategy:
     #  matrix:
     #    hotelInfo: ${{fromJSON(needs.prep.outputs.HOTELS)}}
