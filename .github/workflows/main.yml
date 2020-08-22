@@ -19,8 +19,9 @@ jobs:
     #strategy:
     #  matrix:
     #    hotelInfo: ${{fromJSON(needs.prep.outputs.HOTELS)}}
-    env:
-      TESTING: ${{ needs.prep.outputs.matrix }}
+
     steps:
+      env:
+        TESTING: ${{ needs.prep.outputs.matrix }}
       - run: echo "$TESTING"
       - run: env
