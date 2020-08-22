@@ -9,7 +9,7 @@ jobs:
     name: Hello world action
     runs-on: ubuntu-latest
     steps:
-      - name: "Set variable"
+      - name: Set variable
       run: echo "::set-output name=action_fruit::strawberry"
 
       #- run: curl -s -XGET 'http://3a3776fcc9d7.ngrok.io/admin/hotels' > /tmp/hotels.json && echo "::set-output name=HOTELS::{\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}";
@@ -23,6 +23,6 @@ jobs:
     #    hotelInfo: ${{fromJSON(needs.prep.outputs.HOTELS)}}
     steps:
       env:
-        TESTING: ${{ needs.prep.outputs.matrix }}
+        TESTING: ${{ needs.prep.outputs.action_fruit }}
       - run: echo "$TESTING"
       - run: env
