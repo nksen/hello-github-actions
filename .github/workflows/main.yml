@@ -24,7 +24,9 @@ jobs:
       TESTING: ${{ needs.prep.outputs.hotels_list }}
     strategy:
       matrix:
-        hotelInfo: ${{ fromJSON(needs.prep.outputs.hotels_list) }}
+        hotel_info: ${{ fromJSON(needs.prep.outputs.hotels_list) }}
     steps:
-      - run: echo ${{ toJSON(matrix.hotelInfo) }}
+      env:
+        HOTEL_ID: ${{ matrix.hotel_info._id }}
+        HOTEL_NAME: ${{ matrix.hotel_info.name }}
       - run: env
