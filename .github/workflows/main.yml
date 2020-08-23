@@ -8,10 +8,12 @@ jobs:
   prep:
     name: Hello world action
     runs-on: ubuntu-latest
+    outputs:
+      hotels_list: ${{ steps.get_hotels.outputs.hotels }}
     steps:
-      - name: Set variable
-        id: some_id
-        run: echo "::set-output name=action_fruit::strawberry"
+      - name: Get hotels list
+        id: get_hotels
+        run: echo "::set-output name=hotels::strawberry"
 
         #- run: curl -s -XGET 'http://3a3776fcc9d7.ngrok.io/admin/hotels' > /tmp/hotels.json && echo "::set-output name=HOTELS::{\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}";
         #- run: sed -i 's/"/\\"/g' /tmp/hotels.json
@@ -20,7 +22,7 @@ jobs:
     needs: prep
     runs-on: ubuntu-latest
     env:
-      TESTING: ${{ needs.prep.outputs.some_id }}
+      TESTING: ${{ needs.prep.outputs.hotels_list }}
     #strategy:
     #  matrix:
     #    hotelInfo: ${{fromJSON(needs.prep.outputs.HOTELS)}}
