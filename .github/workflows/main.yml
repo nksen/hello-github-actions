@@ -26,5 +26,5 @@ jobs:
       matrix:
         hotelInfo: ${{ fromJSON(needs.prep.outputs.hotels_list) }}
     steps:
-      - run: echo ${{ matrix.hotelInfo }}
+      - run: echo ${{ toJSON(matrix.hotelInfo) }}
       - run: env
