@@ -26,7 +26,8 @@ jobs:
       matrix:
         hotel_info: ${{ fromJSON(needs.prep.outputs.hotels_list) }}
     steps:
-      env:
-        HOTEL_ID: ${{ matrix.hotel_info._id }}
-        HOTEL_NAME: ${{ matrix.hotel_info.name }}
-      - run: env
+      - name: Build
+        env:
+          HOTEL_ID: ${{ matrix.hotel_info._id }}
+          HOTEL_NAME: ${{ matrix.hotel_info.name }}
+        run: env
