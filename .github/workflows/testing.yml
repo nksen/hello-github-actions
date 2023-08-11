@@ -20,10 +20,10 @@ jobs:
     needs: [my-job]
     steps:
       - name: Dump success context
-        if: success()
+        if: ${{ !contains(needs.*.result, 'failure') }}
         run: echo success
       - name: Dump failure context
-        if: failure()
+        if: ${{ contains(needs.*.result, 'failure') }}
         run: echo failure
       - name: Dump cancelled context
         if: cancelled()
