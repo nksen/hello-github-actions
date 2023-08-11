@@ -16,9 +16,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Dump success context
-        run: echo ${{success()}}
+        if: success()
+        run: echo success
       - name: Dump failure context
-        run: echo ${{failure()}}
+        if: failure()
+        run: echo failure
       - name: Dump cancelled context
-        run: echo ${{cancelled()}}
+        if: cancelled()
+        run: echo cancelled
 
